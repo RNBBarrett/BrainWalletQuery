@@ -22,7 +22,7 @@ The program is written in python and uses a requirements.txt file to install the
 
 At the command line type:
 
-pip install requirements.txt
+pip install -r requirements.txt
 
 
 Basic Logic of the Application:
