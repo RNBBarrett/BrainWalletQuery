@@ -70,8 +70,24 @@ The resulting Bitcoin address is a string of alphanumeric characters that starts
 
 It is important to note that Bitcoin addresses are derived from the public key hash, not the public key itself. This means that the public key can be kept private, while still allowing the user to receive funds to the Bitcoin address. Additionally, Bitcoin addresses can be generated and used without revealing any personal information about the user.
 
-Future Improvements:
----------------------
+FAQ:
+-----------------------------
+
+What are your takeaways from this project? 
+
+1. Do not use traditional brainwallets, they are insecure.
+2. There are a lot of thieves out there with bots who run much more sophisticated systems that will steal your bitcoin account balance in an automated way if you don't protect it properly.
+3. Building on simple logic like this might result in a futurue program that could be used by users to watch there account and alert them if there is suspicious activity, maybe an idea of a future app.
+
+Why is the app so slow?
+
+It's built as a proof of concept, its not mean to run through millions of wallets at speed, its simply used to show how to generate a brainwallet address, query it and to extend the idea brainwallets are generally insecure.
+
+Where can I get a list of passwords to try?
+
+https://weakpass.com/ is a good source. There are many other sites.
+
+Will you improve on this code?
 
 This application is a very simple logic exercise and proof of concept, it is not intended to be efficient or have real world use.
 
@@ -83,11 +99,4 @@ Ways to improve on this application would be to perform the following:
 
 I have not explored it, but it may be possible to download bitcoin addresses with account balances from a source and turn this file into your bloom filter OR it may be possible to install bitcoin core and to query this directly. Other options might include going an API that allows for thousands of queries per second, probably a subscription service.
 
-How does this help security?
------------------------------
 
-Takeaways are... 
-
-1. Do not use traditional brainwallets, they are insecure.
-2. There are a lot of thieves out there with bots who run much more sophisticated systems that will steal your bitcoin account balance in an automated way if you don't protect it properly.
-3. Building on simple logic like this might result in a futurue program that could be used by users to watch there account and alert them if there is suspicious activity, maybe an idea of a future app.
