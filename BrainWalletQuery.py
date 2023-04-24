@@ -1,12 +1,12 @@
-from bitcoin import * #for private and public key generation
+from cryptos import * #for private key, public key and bitcoin address generation
 import requests #for web requests
 import time #for our pause of 1 second to respect the blockchain api
 import csv #for a csv file we will write results to
 
 #setup
 BTC_API_ENDPOINT = 'https://blockchain.info/q/addressbalance/' #1 request every 10 seconds
-fileInput = "Top304Thousand-probable-v2.txt" #file you want to read quotes in from
-fileOutput = "result.csv" #output csv file, import to google docs to sort by Balance column
+fileInput = "quotes.txt" #file you want to read quotes in from
+fileOutput = "result.csv" #output csv file
 header = ['Quotation', 'Address', 'Balance'] #top row header for CSV file
 
 #Write header row to the file
@@ -28,17 +28,13 @@ def check_balance(address):
 
 #bitcoin brainwallet address generator
 def bitcoinWalletGenerator(myQuote):
-    Private_Key = sha256(myQuote)
     
-    toPublic_Key = privtopub(Private_Key)
-
-    #Setting the Bitcoin Address
-    bitCoinAddress = pubtoaddr(toPublic_Key)
-
-    #print results
-    #print('Your private key:', Private_Key)
-    #print('Your public key:', toPublic_Key)
-    #print('Your bitcoin address:', bitCoinAddress)
+    #generate the private key
+    Private_Key = sha256(myQuote)
+    b = Bitcoin()
+    #generate the public key
+    bitCoinAddress = b.privtoaddr(Private_Key)
+    
     return bitCoinAddress
 
 #countdown timer for queries
@@ -56,15 +52,14 @@ def testQuote(theQuote):
     address = bitcoinWalletGenerator(theQuote)
     #check the balanace of the address
     balance = check_balance(address) #only 1 request every 10 seconds to respect the API
-    print('Working on quote: ', theQuote)
-
+    print('Current Quote: ', theQuote)
+    print('Fetching Wallet Address: ', address)
     #pause to respect the API if you query the API faster than this you will likely get blacklisted for some time
     print("Waiting 10s to query Blockchain info API... ")
     countdown(10)
     
     if balance is not None:
-        print(' Found it!')
-        print(f'Address & Balance {address}: {balance:.8f} BTC')
+        print(f'Balance {balance:.8f} BTC')
         print('#############################################################')
         #write quote and balance to results file, if no balance, nothing it written to the file
         #Write each object to the file
