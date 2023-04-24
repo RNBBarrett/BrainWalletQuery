@@ -1,2 +1,2 @@
-bitcoin==1.1.39
+cryptos==2.0.6
 requests==2.27.1
